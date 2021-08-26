@@ -75,10 +75,22 @@ class App extends Component {
       style.backgroundColor = 'red';
     }
 
+    // ******* changing or adding css classes dynamically ******* 
+    let cssClasses = [];
+    if (this.state.persons.length <= 2) {
+      cssClasses.push('red'); // cssClasses = ['red']
+    }
+    if (this.state.persons.length <= 1) {
+      cssClasses.push('bold'); // cssClasses = ['red', 'bold']
+    }
+    // ******* changing or adding css classes dynamically *******
+
     return (
       <div className="App">
         <h1>Hi, I'm React App</h1>
-        <p>This is really working!</p>
+        {/* join */}
+
+        <p className={cssClasses.join(' ')}>This is really working!</p>
 
         <button
           style={style}
