@@ -47,7 +47,8 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -70,6 +71,8 @@ class App extends Component {
           })}
         </div>
       );
+      // dynamically color change hoga button ka. ooper jo obj hai us ki property ki value change kerdi
+      style.backgroundColor = 'red';
     }
 
     return (
