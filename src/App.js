@@ -13,14 +13,21 @@ class App extends Component {
     showPersons: false
   }
 
-  nameChangedHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: 'max', age: 28 },
-        { name: event.target.value, age: 23 },
-        { name: 'john', age: 27 }
-      ]
-    })
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({ persons: persons })
   }
 
   deletePersonHandler = (personIndex) => {
@@ -30,7 +37,7 @@ class App extends Component {
     // const persons = this.state.persons.slice(); // agar slice() mein koi arg na dain to ye array ko copy ker leta hai. Lekin is ki jaga ye use karain
     const persons = [...this.state.persons]; // use spread operator(ES6) instead of slice. But these both are same thing
     persons.splice(personIndex, 1);
-    this.setState({persons: persons});
+    this.setState({ persons: persons });
   }
 
   togglePersonHandler = () => {
@@ -55,10 +62,11 @@ class App extends Component {
             return <Person
               click={() => this.deletePersonHandler(index)}
               name={person.name}
-              age={person.age} 
-              key={person.id}/>
-              // react mein key dena must hai agar nahi di thi to bhi chal raha tha lekin react future elements ko previous elements se
-              // compare kerta hai or dekhta hai k kya change huwa hai
+              age={person.age}
+              key={person.id}
+              changed={(event) => this.nameChangedHandler(event, person.id)} />
+            // react mein key dena must hai agar nahi di thi to bhi chal raha tha lekin react future elements ko previous elements se
+            // compare kerta hai or dekhta hai k kya change huwa hai
           })}
         </div>
       );
