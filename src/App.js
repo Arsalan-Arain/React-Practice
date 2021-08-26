@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium from 'radium';
 import './App.css';
 import Person from './Person/Person'
 
@@ -52,7 +53,11 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     }
 
     let persons = null;
@@ -73,6 +78,10 @@ class App extends Component {
       );
       // dynamically color change hoga button ka. ooper jo obj hai us ki property ki value change kerdi
       style.backgroundColor = 'red';
+      style[':hover'] = { // yahan pe style.:hover nahi ker sakte q k ':hover' string hai. ese bhi [] laga k obj ki prop access ker sakte hain
+        backgroundColor: 'salmon',
+        color: 'black'
+      }
     }
 
     // ******* changing or adding css classes dynamically ******* 
@@ -102,4 +111,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
