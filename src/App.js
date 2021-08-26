@@ -5,9 +5,9 @@ import Person from './Person/Person'
 class App extends Component {
   state = {
     persons: [
-      { name: 'max', age: 28 },
-      { name: 'manu', age: 23 },
-      { name: 'john', age: 26 }
+      { id: 'id1', name: 'max', age: 28 },
+      { id: 'id2', name: 'manu', age: 23 },
+      { id: 'id3', name: 'john', age: 26 }
     ],
     otherState: 'some other value',
     showPersons: false
@@ -24,7 +24,11 @@ class App extends Component {
   }
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    // ye abhi original array ko hi change ker raha hai q k array bhi reference type hai or ye ek wrong practice hai
+    // const persons = this.state.persons;
+    // **** solution is that copy the array into new array ****
+    // const persons = this.state.persons.slice(); // agar slice() mein koi arg na dain to ye array ko copy ker leta hai. Lekin is ki jaga ye use karain
+    const persons = [...this.state.persons]; // use spread operator(ES6) instead of slice. But these both are same thing
     persons.splice(personIndex, 1);
     this.setState({persons: persons});
   }
@@ -51,7 +55,10 @@ class App extends Component {
             return <Person
               click={() => this.deletePersonHandler(index)}
               name={person.name}
-              age={person.age} />
+              age={person.age} 
+              key={person.id}/>
+              // react mein key dena must hai agar nahi di thi to bhi chal raha tha lekin react future elements ko previous elements se
+              // compare kerta hai or dekhta hai k kya change huwa hai
           })}
         </div>
       );
