@@ -1,7 +1,7 @@
 // compoent add kerne k liye function banana perta hai. Ek p component bana diya
 import React from 'react';
 
-import './Person.css';
+import cssClasses from './Person.css';
 
 // *********** show dynamic content ************
 // const person = () => {
@@ -16,7 +16,7 @@ import './Person.css';
 // *********** also show content passed between opening and closing tags ************
 const person = (props) => {
   return (
-    <div className='Person'>
+    <div className={cssClasses.Person}>
       <p onClick={props.click}>My name is {props.name} and I'm {props.age} years old</p>
       {/* p k click event pe bhi wo func call ho jiska click prop ko refernce diya tha */}
       <p>{props.children}</p>
