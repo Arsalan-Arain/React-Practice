@@ -1,5 +1,4 @@
 // compoent add kerne k liye function banana perta hai. Ek p component bana diya
-import Radium from 'radium';
 import React from 'react';
 
 import './Person.css';
@@ -16,13 +15,8 @@ import './Person.css';
 
 // *********** also show content passed between opening and closing tags ************
 const person = (props) => {
-  const style = {
-    '@media (min-width: 500px)': {
-      width: '450px'
-    }
-  }
   return (
-    <div className='Person' style={style}>
+    <div className='Person'>
       <p onClick={props.click}>My name is {props.name} and I'm {props.age} years old</p>
       {/* p k click event pe bhi wo func call ho jiska click prop ko refernce diya tha */}
       <p>{props.children}</p>
@@ -36,10 +30,4 @@ const person = (props) => {
   )
 };
 // radium library use kerne k liye export kerte huwe radium k func mein wrap kerna hota hai
-export default Radium(person);
-
-
-
-// ye component to ban gaya lekin 2 kaam or kerne honge
-// 1. import react bcz jsx is transformed to react create element
-// 2. export ker diya ye component 
+export default person;

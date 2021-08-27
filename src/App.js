@@ -54,10 +54,6 @@ class App extends Component {
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
     }
 
     let persons = null;
@@ -78,10 +74,6 @@ class App extends Component {
       );
       // dynamically color change hoga button ka. ooper jo obj hai us ki property ki value change kerdi
       style.backgroundColor = 'red';
-      style[':hover'] = { // yahan pe style.:hover nahi ker sakte q k ':hover' string hai. ese bhi [] laga k obj ki prop access ker sakte hain
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
     }
 
     // ******* changing or adding css classes dynamically ******* 
@@ -95,7 +87,6 @@ class App extends Component {
     // ******* changing or adding css classes dynamically *******
 
     return (
-      <StyleRoot>
         <div className="App">
           <h1>Hi, I'm React App</h1>
           {/* join */}
@@ -108,9 +99,8 @@ class App extends Component {
 
           {persons}
         </div>
-      </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+export default App;
