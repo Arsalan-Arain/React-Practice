@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import './App.css';
 import Person from './Person/Person'
 
@@ -95,18 +95,20 @@ class App extends Component {
     // ******* changing or adding css classes dynamically *******
 
     return (
-      <div className="App">
-        <h1>Hi, I'm React App</h1>
-        {/* join */}
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, I'm React App</h1>
+          {/* join */}
 
-        <p className={cssClasses.join(' ')}>This is really working!</p>
+          <p className={cssClasses.join(' ')}>This is really working!</p>
 
-        <button
-          style={style}
-          onClick={this.togglePersonHandler}>Toggle Persons</button>
+          <button
+            style={style}
+            onClick={this.togglePersonHandler}>Toggle Persons</button>
 
-        {persons}
-      </div>
+          {persons}
+        </div>
+      </StyleRoot>
     );
   }
 }
